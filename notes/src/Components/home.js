@@ -2,13 +2,28 @@ import React, { useState } from "react";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.js";
 import TaskList from "./taskList";
+ 
 
 function Home() {
-  const [InputValue, setInputValue] = useState();
+  const [InputValue, setInputValue] = useState({
+    title:"",
+    desc:"",
+  });
 
   const inputValues = (event) => {
-    setInputValue(event.target.value);
+
+    const name = event.target.name;
+    const value= event.target.value;
+    
+    setInputValue((prevalue)=>{
+     return{
+      ...prevalue,
+      [name]: value,
+    }
+    });
+    // console.log(InputValue);
   };
+
 
   const [FinalSave, setFinalSave] = useState([]);
 
@@ -16,8 +31,8 @@ function Home() {
     setFinalSave((oldData) => {
       return [...oldData, InputValue];
     });
-    setInputValue("");
   };
+
 
   const deleteItem = (PassedID) => {
     setFinalSave((oldList) => {
@@ -36,16 +51,28 @@ function Home() {
       <h2 className="text-center"> Note Book </h2>
       <div className="row pt-4">
         <div className="col-10 mx-auto">
-          <div className="input-group mb-3">
+          <div className="mb-3">
             <input
               type="text"
-              className="form-control "
-              placeholder="Add text here.. "
+              className="form-control mb-1"
+              placeholder="Add title here.. "
               aria-label="Recipient's username"
               aria-describedby="basic-addon2"
-              value={InputValue}
+              name="title"
+              value={InputValue.title}
               onChange={inputValues}
             />
+            <div className="form-floating mb-1">
+              <textarea
+                className="form-control"
+                placeholder=""
+                name="desc"
+                value={InputValue.desc}
+                onChange={inputValues}
+                id="floatingTextarea2"
+              ></textarea>
+              <label for="floatingTextarea2">Despription </label>
+            </div>
             <div className="input-group-append">
               <button
                 className="btn btn-outline-secondary"
@@ -61,7 +88,8 @@ function Home() {
       <div className="row">
         <div className="col-10 mx-auto">
           <h3>Your Notes : </h3>
-          <ul class="list-group">
+          <hr/>
+          <div className="row">
             {FinalSave.map((item, id) => {
               return (
                 <TaskList
@@ -73,7 +101,7 @@ function Home() {
                 />
               );
             })}
-          </ul>
+          </div>
         </div>
       </div>
     </div>
