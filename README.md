@@ -1,4 +1,4 @@
-#Intro : 
+# Intro : 
 It's an app that works like Google keeps. 
 
 # Getting Started with Create React App
