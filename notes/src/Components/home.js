@@ -2,28 +2,25 @@ import React, { useState } from "react";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.js";
 import TaskList from "./taskList";
- 
 
 function Home() {
   const [InputValue, setInputValue] = useState({
-    title:"",
-    desc:"",
+    title: "",
+    desc: "",
   });
 
   const inputValues = (event) => {
-
     const name = event.target.name;
-    const value= event.target.value;
-    
-    setInputValue((prevalue)=>{
-     return{
-      ...prevalue,
-      [name]: value,
-    }
+    const value = event.target.value;
+
+    setInputValue((prevalue) => {
+      return {
+        ...prevalue,
+        [name]: value,
+      };
     });
     // console.log(InputValue);
   };
-
 
   const [FinalSave, setFinalSave] = useState([]);
 
@@ -31,8 +28,12 @@ function Home() {
     setFinalSave((oldData) => {
       return [...oldData, InputValue];
     });
-  };
 
+    setInputValue({
+      title: "",
+    desc: "",
+    })
+  };
 
   const deleteItem = (PassedID) => {
     setFinalSave((oldList) => {
@@ -47,7 +48,7 @@ function Home() {
   };
 
   return (
-    <div className="container p-4">
+    <div className=" p-4">
       <h2 className="text-center"> Note Book </h2>
       <div className="row pt-4">
         <div className="col-10 mx-auto">
@@ -65,6 +66,7 @@ function Home() {
             <div className="form-floating mb-1">
               <textarea
                 className="form-control"
+                style={{height:"8rem"}}
                 placeholder=""
                 name="desc"
                 value={InputValue.desc}
@@ -88,7 +90,7 @@ function Home() {
       <div className="row">
         <div className="col-10 mx-auto">
           <h3>Your Notes : </h3>
-          <hr/>
+          <hr />
           <div className="row">
             {FinalSave.map((item, id) => {
               return (
