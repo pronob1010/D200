@@ -31,8 +31,8 @@ function Home() {
 
     setInputValue({
       title: "",
-    desc: "",
-    })
+      desc: "",
+    });
   };
 
   const deleteItem = (PassedID) => {
@@ -66,7 +66,7 @@ function Home() {
             <div className="form-floating mb-1">
               <textarea
                 className="form-control"
-                style={{height:"8rem"}}
+                style={{ height: "8rem" }}
                 placeholder=""
                 name="desc"
                 value={InputValue.desc}
