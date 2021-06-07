@@ -2,6 +2,9 @@
   text-align: center;
 }
 
+.navbar-nav{
+  margin-left: auto;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
