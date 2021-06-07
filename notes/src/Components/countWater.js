@@ -15,6 +15,7 @@ function Water() {
       setnumber(number - 1);
     } else {
       settext("text-danger");
+      alert("It's 0!!!");
     }
   };
   const reset = () => {
