@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from .models import TaskData
 from .serializers import TaskSerializer  
@@ -27,3 +28,22 @@ from rest_framework.generics import CreateAPIView
 class TaskCreateAPIView(CreateAPIView):
     queryset = TaskData.objects.all()
     serializer_class = TaskSerializer
+
+from rest_framework.generics import RetrieveAPIView
+
+class TaskRetrieveAPIView(RetrieveAPIView): 
+    queryset = TaskData.objects.all()
+    serializer_class = TaskSerializer
+
+
+from rest_framework.generics import UpdateAPIView
+class TaskUpdateAPIView(UpdateAPIView):
+    queryset = TaskData.objects.all()
+    serializer_class = TaskSerializer
+
+
+from rest_framework.generics import DestroyAPIView
+class TaskDestroyAPIView(DestroyAPIView):
+    queryset = TaskData.objects.all()
+    serializer_class = TaskSerializer
+
